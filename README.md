@@ -1,15 +1,12 @@
 #BDD
-===
 
 Git per a la pràctica de base de dades
 
 ##Com s'utilitza
-===
 
 psql -h postgres.mat.ub.edu -U alumne_adm -d alumne -W
 
 ###Comandes
-===
 
 \dt -> mostra les taules
 \echo -> mostra per pantalla un missatge
