@@ -7,7 +7,7 @@ CREATE TABLE hotel (
 
 CREATE TABLE sala ( 
 	id SERIAL PRIMARY KEY,
-	hotel int REFERENCES hotel(id),
+	hotel id REFERENCES hotel(id),
 	aforament int
 );
 
