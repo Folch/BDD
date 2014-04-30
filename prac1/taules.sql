@@ -1,18 +1,18 @@
-\echo inicialitzant la base de dades...
+\echo Creant la base de dades...
 CREATE TABLE hotel ( 
-	id SERIAL PRIMARY KEY,
-	nom text,
+	nom text PRIMARY KEY,
 	direccio text
 );
 
 CREATE TABLE sala ( 
 	id SERIAL PRIMARY KEY,
-	hotel id REFERENCES hotel(id),
+	nom text,
+	hotel text REFERENCES hotel(nom),
 	aforament int
 );
 
 CREATE TABLE jornada (
-	id SERIAL PRIMARY KEY,
+	id int PRIMARY KEY,
 	data timestamp
 );
 
@@ -28,23 +28,28 @@ CREATE TABLE pais (
 
 CREATE TABLE persona ( 
 	dni text PRIMARY KEY,
+	nom text, 
+	sexe char,
+	hotel text REFERENCES hotel(nom),
 	pais text REFERENCES pais(nom)
 );
 
-CREATE TABLE jugador ( 
-	hotel int REFERENCES hotel(id)
+CREATE TABLE jugador (
+	edat int
 ) INHERITS (persona);
 
 CREATE TABLE jutge ( 
-	identificador int UNIQUE
+	pblanques int,
+	pnegres int, 
+	ptaules int
 ) INHERITS (persona);
 
 CREATE TABLE partida (
 	id SERIAL PRIMARY KEY,
-	jblancas text REFERENCES persona(dni),
+	jblanques text REFERENCES persona(dni),
 	jnegres text REFERENCES persona(dni),
-	victoria char,
-	jutge int REFERENCES jutge(identificador),
+	victoria text REFERENCES persona(dni),
+	jutge text REFERENCES persona(dni),
 	jornada int REFERENCES jornada(id),
 	sala int REFERENCES sala(id)
 );
@@ -57,3 +62,4 @@ CREATE TABLE moviment (
 	posOr text, /*posició de la peça*/
 	posDe text  /*posició a la qual va a parar la peça*/
 );
+\echo Base de dades creada.

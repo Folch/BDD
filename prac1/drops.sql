@@ -1,4 +1,4 @@
-\echo Borrem 10 taules
+\echo Borrant les taules...
 DROP TABLE IF EXISTS hotel CASCADE;
 DROP TABLE IF EXISTS sala CASCADE;
 DROP TABLE IF EXISTS jornada CASCADE;
@@ -9,3 +9,4 @@ DROP TABLE IF EXISTS jugador CASCADE;
 DROP TABLE IF EXISTS jutge CASCADE;
 DROP TABLE IF EXISTS partida CASCADE;
 DROP TABLE IF EXISTS moviment CASCADE;
+\echo taules borrades
