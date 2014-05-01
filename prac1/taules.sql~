@@ -34,7 +34,7 @@ CREATE TABLE jornada (
 	CONSTRAINT clau_principal_idjornada PRIMARY KEY(id),
 	
 	--data*, comprovació que la datafi sigui major o igual que la datainici
-	CONSTRAINT dades_incongruents CHECK (datainici <= datafi)
+	CONSTRAINT dades_incongruents CHECK (datainici >= datafi)
 	
 );
 --Com no ens guardem qui compra ens guardem una id de la entrada, que serà autoincremental,
