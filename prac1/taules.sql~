@@ -16,7 +16,7 @@ CREATE TABLE jornada (
 	datainici timestamp, 
 	datafi timestamp
 );
-/*
+
 CREATE TABLE entrada (
 	--Com no ens guardem qui compra ens guardem una id de la entrada, que serà autoincremental,
 	--per tenir control de cada entrada.
@@ -25,7 +25,7 @@ CREATE TABLE entrada (
 	sala text,
 	hotel text,
 	FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel)
-);*/
+);
 
 CREATE TABLE pais ( 
 	nom text PRIMARY KEY

@@ -7,4 +7,7 @@ CREATE TABLE
 CREATE TABLE
 CREATE TABLE
 CREATE TABLE
-CREATE TABLE
+ nom | direccio 
+-----+----------
+(0 rows)
+
