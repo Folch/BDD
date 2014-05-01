@@ -16,25 +16,27 @@ CREATE TABLE jornada (
 	datainici timestamp, 
 	datafi timestamp
 );
-/*
+
 CREATE TABLE entrada (
 	--Com no ens guardem qui compra ens guardem una id de la entrada, que serà autoincremental,
 	--per tenir control de cada entrada.
-	id SERIAL PRIMARY KEY,
+	entradesvenudes int,
 	jornada int REFERENCES jornada(id),
 	sala text,
 	hotel text,
-	FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel)
-);*/
+	FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel),
+	PRIMARY KEY (jornada, sala, hotel)
+);
 
 CREATE TABLE pais ( 
 	nom text PRIMARY KEY
 );
 
+CREATE TYPE gender AS ENUM ('H', 'D');
 CREATE TABLE persona ( 
 	dni text PRIMARY KEY,
 	nom text, 
-	sexe char,
+	sexe gender,
 	hotel text REFERENCES hotel(nom),
 	pais text REFERENCES pais(nom)
 );
@@ -54,7 +56,7 @@ CREATE TABLE jutge (
 );
 
 CREATE TABLE partida (
-	id int PRIMARY KEY,
+	id int,
 	jblanques text REFERENCES persona(dni),
 	jnegres text REFERENCES persona(dni),
 	victoria text REFERENCES persona(dni),
@@ -62,15 +64,18 @@ CREATE TABLE partida (
 	jornada int REFERENCES jornada(id),
 	sala text,
 	hotel text,
-	FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel)
+	FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel),
+	PRIMARY KEY(jornada, id)
 );
 
 CREATE TABLE moviment (
 	id SERIAL PRIMARY KEY,
-	partida int REFERENCES partida(id),
+	partida int,
+	jornada int,
 	color char,
 	pesa char,
 	posOr text, /*posició de la peça*/
-	posDe text  /*posició a la qual va a parar la peça*/
+	posDe text,  /*posició a la qual va a parar la peça*/
+	FOREIGN KEY(jornada, partida) REFERENCES partida(jornada, id)
 );
 \echo Base de dades creada.
