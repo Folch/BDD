@@ -3,21 +3,16 @@
 \set CLIENT_MIN_MESSAGE 'ERROR'
 
 -- Borrem les taules
-\i drops.sql
+\i delete/make.sql
 
-/*
-\echo Creant querylog.txt per registrar les queries...
-\o querylog.txt
-\echo querylog.txt creat.
-*/
+-- Creació de taules i enums
+\i create/make.sql
 
-\i taules.sql
+-- Creació de funcions
+\i functions/make.sql
+
+-- Creació dels triggers
 \i triggers.sql
 
-\i inserts/insert_csv.sql
-
-/*
-EntradesDisponibles(sala, jornada) = aforament(sala) - sumatori(EntradesVenudes(partida), per a cada partida)
-
-*/
-
+-- Inserció a la base de dades
+\i insert/make.sql

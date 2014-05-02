@@ -69,8 +69,6 @@ CREATE TABLE pais (
 	CONSTRAINT clau_principal_nompais PRIMARY KEY(nom)
 );
 
--- Enum que indica H si és un home i D si és dona. Ens asegurem que 
-CREATE TYPE gender AS ENUM ('H', 'D');
 CREATE TABLE persona (
 	dni text,
 	nom text NOT NULL, 
@@ -155,9 +153,6 @@ CREATE TABLE partida (
 	CONSTRAINT clau_foranea_sala_hotel FOREIGN KEY (sala, hotel) REFERENCES sala(nom, hotel)
 );
 
--- Enum que indica H si és un home i D si és dona. Ens asegurem que 
-CREATE TYPE color AS ENUM ('B', 'N');
-CREATE TYPE pesa AS ENUM('peó','alfil','caball','torre','rei', 'reina');
 CREATE TABLE moviment (
 	id SERIAL,
 	partida int,
