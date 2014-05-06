@@ -1,3 +1,4 @@
-e4,e5
-b3,h4
-Re2,e4++
+moviment.jornada,partida
+e4,e5.3,4
+b3,h4.3,4
+Re2,e4++.3,4

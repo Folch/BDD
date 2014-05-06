@@ -1,6 +1,7 @@
-e4,e5
-Df3,Cc6
-Ac4,Ac5
-f7++
+moviment.jornada,partida
+e4,e5.3,1
+Df3,Cc6.3,1
+Ac4,Ac5.3,1
+f7++.3,1
 
 
