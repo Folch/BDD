@@ -156,8 +156,9 @@ CREATE TABLE partida (
 CREATE TABLE moviment (
 	jornada int,
 	partida int,
-	tirada text,
+	tirada text NOT NULL,
 	time timestamp,
+	color color NOT NULL,
 
 	--Constraints
 	--id (PK)
