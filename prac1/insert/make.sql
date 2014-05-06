@@ -18,5 +18,9 @@
 \copy persona from insert/csv/persona.csv delimiter ',' csv header
 \copy jugador from insert/csv/jugador.csv delimiter ',' csv header
 \copy jutge from insert/csv/jutge.csv delimiter ',' csv header
-\copy partida from insert/csv/partida.csv delimiter ',' csv header
+\copy partida from insert/csv/partides/partida.csv delimiter ',' csv header
+
+
+\copy moviment from insert/csv/partides/moviments/jornada1/1.1.csv delimiter '.' csv header
+
 \echo Bolcat
