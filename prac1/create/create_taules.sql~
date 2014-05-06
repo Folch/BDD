@@ -157,7 +157,10 @@ CREATE TABLE moviment (
 	id SERIAL,
 	partida int,
 	jornada int,
-	tirada text
+	color color NOT NULL,
+	pesa pesa NOT NULL,
+	posOr text NOT NULL, /*posició de la peça*/
+	posDe text NOT NULL, /*posició a la qual va a parar la peça*/
 
 	--Constraints
 	--id (PK)

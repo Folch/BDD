@@ -10,7 +10,7 @@
 \i functions/guanyadorPais.sql
 \i functions/arbitreBlanc.sql
 \i functions/arbitreNegre.sql
-\i functions/arbitreTaules.sql
+\i functions/arbitreTaule.sql
 
 -- Crida al make de la subcarpeta 'trigger_functions.sql'
 \i functions/trigger_functions/make.sql
