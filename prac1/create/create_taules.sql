@@ -89,22 +89,22 @@ CREATE TABLE persona (
 
 CREATE TABLE jugador (
 	edat int,
-	persona text,
+	dni text,
 	
 	--Constraints
 	--edat
 	CONSTRAINT edat_invalid CHECK (edat >= 0),
 
 	--persona (PK) - Herència:
-	CONSTRAINT clau_foranea_personajugador FOREIGN KEY (persona) REFERENCES persona(dni),
-	CONSTRAINT clau_principal_personajugador PRIMARY KEY(persona)
+	CONSTRAINT clau_foranea_personajugador FOREIGN KEY (dni) REFERENCES persona(dni),
+	CONSTRAINT clau_principal_personajugador PRIMARY KEY(dni)
 );
 
 CREATE TABLE jutge ( 
 	pblanques int DEFAULT 0,
 	pnegres int DEFAULT 0,
 	ptaules int DEFAULT 0,
-	persona text,
+	dni text,
 		
 	--Constraints
 	--pblanques
@@ -117,8 +117,8 @@ CREATE TABLE jutge (
 	CONSTRAINT ptaules_invalid CHECK (ptaules >= 0),
 
 	--persona (PK) - Herència:
-	CONSTRAINT clau_foranea_personajutge FOREIGN KEY (persona) REFERENCES persona(dni),
-	CONSTRAINT clau_principal_personajutge PRIMARY KEY(persona)
+	CONSTRAINT clau_foranea_personajutge FOREIGN KEY (dni) REFERENCES persona(dni),
+	CONSTRAINT clau_principal_personajutge PRIMARY KEY(dni)
 );
 
 CREATE TABLE partida (

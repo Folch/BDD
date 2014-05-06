@@ -1,16 +1,16 @@
 --TRIGGERS
 
-CREATE OR REPLACE TRIGGER updateReferee 
+CREATE TRIGGER updateReferee 
 	AFTER INSERT OR UPDATE
 	ON partida FOR EACH ROW
 	EXECUTE PROCEDURE update_game_referee();
 
-CREATE OR REPLACE TRIGGER refereeControl 
+CREATE TRIGGER refereeControl 
 	BEFORE INSERT OR UPDATE
 	ON partida FOR EACH ROW
 	EXECUTE PROCEDURE referee_control();
 
-CREATE OR REPLACE TRIGGER update_ticket
+CREATE TRIGGER update_ticket
 	AFTER INSERT
 	ON partida FOR EACH ROW
 	EXECUTE PROCEDURE update_ticket();

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION partida_mes_llarga() RETURNS TABLE(jornada int, partida int, duration interval) AS $$
+CREATE OR REPLACE FUNCTION partida_mes_curta() RETURNS TABLE(jornada int, partida int, duration interval) AS $$
 	BEGIN
 		RETURN QUERY(
 			SELECT m1.jornada, m1.partida, m1.time-m2.time
@@ -13,9 +13,9 @@ CREATE OR REPLACE FUNCTION partida_mes_llarga() RETURNS TABLE(jornada int, parti
 						ORDER BY time ASC limit 1)
 					AND m1.jornada = m2.jornada 
 					AND m1.partida = m2.partida
-				ORDER BY m1.time-m2.time DESC
+				ORDER BY m1.time-m2.time ASC
 				LIMIT 1
-			);
+		);
 	END;
 $$LANGUAGE plpgsql;
 

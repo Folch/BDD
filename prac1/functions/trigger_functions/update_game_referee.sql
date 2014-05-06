@@ -11,14 +11,14 @@ CREATE OR REPLACE FUNCTION update_game_referee() RETURNS TRIGGER AS $$
 			IF (NEW.victoria is not null) then
 				update jutge
 				SET pblanques = pblanques + 1
-				where new.jutge = jutge.persona;
+				where new.jutge = jutge.dni;
 			END IF;
 		ELSE
 
 			IF (NEW.victoria is not null) then
 				update jutge
 				SET pnegres =pnegres + 1
-				where new.jutge = jutge.persona;
+				where new.jutge = jutge.dni;
 			END IF;
 		END IF;
 		RETURN NULL;

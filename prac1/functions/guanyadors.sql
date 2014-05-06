@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION guanyadors() RETURNS TABLE(nom text,victoria text,par
 		where pe.dni = p.victoria
 		GROUP BY p.victoria , pe.nom
 		ORDER BY partidesGuanyades DESC 
-		limit 3);
+		LIMIT 3);
 			
 	END;
 $$LANGUAGE plpgsql;
