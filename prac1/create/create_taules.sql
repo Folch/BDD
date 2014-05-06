@@ -165,6 +165,6 @@ CREATE TABLE moviment (
 	CONSTRAINT clau_principal_partida_time PRIMARY KEY(jornada,partida, time),
 	
 	--(jornada,partida)
-	CONSTRAINT clau_foranea_jornada_partida FOREIGN KEY(jornada, partida) REFERENCES partida(jornada, id)
+	CONSTRAINT clau_foranea_jornada_partida FOREIGN KEY(jornada, partida) REFERENCES partida(jornada, id) 
 );
 \echo Base de dades creada.

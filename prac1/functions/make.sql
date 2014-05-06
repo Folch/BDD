@@ -13,6 +13,7 @@
 \i functions/arbitreTaules.sql
 \i functions/partida_mes_curta.sql
 \i functions/partida_mes_llarga.sql
+\i functions/informe_moviments.sql
 
 -- Crida al make de la subcarpeta 'trigger_functions.sql'
 \i functions/trigger_functions/make.sql
