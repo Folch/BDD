@@ -21,6 +21,6 @@
 \copy partida from insert/csv/partides/partida.csv delimiter ',' csv header
 
 
-\copy moviment from insert/csv/partides/moviments/jornada1/1.1.csv delimiter '.' csv header
+\copy moviment from insert/csv/partides/moviments.csv delimiter '.' csv header
 
 \echo Bolcat

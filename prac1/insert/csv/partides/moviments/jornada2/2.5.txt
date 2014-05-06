@@ -1,7 +1,0 @@
-moviment.jornada,partida
-e4,e5.2,5
-Df3,Cc6.2,5
-Ac4,Ac5.2,5
-f7++.2,5
-
-

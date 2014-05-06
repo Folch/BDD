@@ -154,10 +154,10 @@ CREATE TABLE partida (
 );
 
 CREATE TABLE moviment (
-	tirada text,
 	jornada int,
 	partida int,
-	time timestamp DEFAULT now(),
+	tirada text,
+	time timestamp,
 
 	--Constraints
 	--id (PK)

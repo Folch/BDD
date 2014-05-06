@@ -1,4 +1,0 @@
-moviment.jornada,partida
-e4,e5.1,11
-b3,h4.1,11
-Re2,e4++.1,11
