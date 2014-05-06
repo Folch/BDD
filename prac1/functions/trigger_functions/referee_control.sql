@@ -33,6 +33,7 @@ CREATE OR REPLACE FUNCTION referee_control() RETURNS TRIGGER AS $$
 			IF ((paisJutge <> paisPlayerBlanques) AND (paisJutge <> paisPlayerNegres)) THEN
 				RETURN NEW;--Si el jutge es de nacionalitat diferent als 2 jugadors, es crea la partida
 			ELSE
+				
 				RAISE NOTICE 'Partida: %.% no creada',NEW.jornada, NEW.id;
 				RAISE NOTICE 'PARTIDA NO CREADA: El jutge es del mateix pais (%) que el jugador blanc (%) i/o del jugador negre (%)',paisJutge,paisPlayerBlanques,paisPlayerNegres;
 				RETURN NULL;
