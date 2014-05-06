@@ -154,14 +154,14 @@ CREATE TABLE partida (
 );
 
 CREATE TABLE moviment (
-	id SERIAL,
-	partida int,
+	tirada text,
 	jornada int,
-	tirada text
+	partida int,
+	time timestamp DEFAULT now(),
 
 	--Constraints
 	--id (PK)
-	CONSTRAINT clau_principal_idmoviment PRIMARY KEY(id),
+	CONSTRAINT clau_principal_partida_time PRIMARY KEY(jornada,partida, time),
 	
 	--(jornada,partida)
 	CONSTRAINT clau_foranea_jornada_partida FOREIGN KEY(jornada, partida) REFERENCES partida(jornada, id)
