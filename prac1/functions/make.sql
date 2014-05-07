@@ -5,15 +5,9 @@
  *		triggers com d'altres.                            *
  ******************************************************************/
 
-\i functions/entrades_disponibles.sql
-\i functions/guanyadors.sql
-\i functions/guanyadorPais.sql
-\i functions/arbitreBlanc.sql
-\i functions/arbitreNegre.sql
-\i functions/arbitreTaules.sql
-\i functions/partida_mes_curta.sql
-\i functions/partida_mes_llarga.sql
-\i functions/informe_moviments.sql
 
--- Crida al make de la subcarpeta 'trigger_functions.sql'
+-- Crida al make de la subcarpeta 'consultes'
+\i functions/consultes/make.sql
+
+-- Crida al make de la subcarpeta 'trigger_functions'
 \i functions/trigger_functions/make.sql

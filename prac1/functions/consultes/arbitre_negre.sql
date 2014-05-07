@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION arbitreNegre() RETURNS TABLE(nom text, dni text) AS $$
+CREATE OR REPLACE FUNCTION arbitre_negre() RETURNS TABLE(nom text, dni text) AS $$
 	DECLARE
 	BEGIN
 
