@@ -8,6 +8,7 @@
 \i functions/consultes/entrades_disponibles.sql
 \i functions/consultes/guanyadors.sql
 \i functions/consultes/guanyador_pais.sql
+\i functions/consultes/pais_guanyador.sql
 \i functions/consultes/arbitre_blanc.sql
 \i functions/consultes/arbitre_negre.sql
 \i functions/consultes/arbitre_taules.sql
