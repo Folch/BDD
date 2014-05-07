@@ -1,6 +1,6 @@
 --Quan troba un error para
 \set ON_ERROR_STOP 'on'
-\set CLIENT_MIN_MESSAGE 'ERROR'
+\set CLIENT_MIN_MESSAGE to notice
 
 -- Borrem les taules
 \i delete/make.sql

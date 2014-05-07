@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION guanyadorPais(paisEntrada text) RETURNS TABLE(dni text,nom text,partidesGuanyades bigint) AS $$
+CREATE OR REPLACE FUNCTION guanyador_pais(paisEntrada text) RETURNS TABLE(dni text,nom text,partidesGuanyades bigint) AS $$
 	DECLARE
 
 	BEGIN
