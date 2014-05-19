@@ -87,7 +87,6 @@ public class DataBase {
                 System.err.println("Error al executar la query d'inicialització de la base de dades");
             } finally {
                 //stmt.close();
-                conn.close();
                 System.out.println("Base de dades plena");
             }
         } catch (FileNotFoundException | SQLException ex) {

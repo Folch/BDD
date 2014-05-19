@@ -64,8 +64,8 @@ public class ChessTournament {
         String userName = sc.nextLine();
         System.out.println("Entra el teu password: ");
         String password = sc.nextLine();*/
-        String userName = "afolchga8";
-        String password = "team93";
+        String userName = "xaviml93";
+        String password = "xavi.93";
         DataBase db = new DataBase(userName,password);
         
         
