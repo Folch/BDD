@@ -44,7 +44,7 @@ public class DataBase {
         }
         try {
             conn = DriverManager.getConnection(pathPostgre,userName+"_adm",password);
-            fillDataBase(sqlFile,userName);
+            fillDataBase(sqlFile,userName,password);
             //Statement stat = conn.createStatement();
             //stat.executeUpdate(  );
             //stat.close();
@@ -57,7 +57,7 @@ public class DataBase {
         return conn;
 
     }
-    private void fillDataBase(String sqlFile,String userName) {
+    private void fillDataBase(String sqlFile,String userName,String password) {
         FileInputStream inputStream = null;
         try {
             inputStream = new FileInputStream(sqlFile);
@@ -79,7 +79,7 @@ public class DataBase {
                 // Execute the query
                 //Runtime.getRuntime().exec( "psql -h postgres.mat.ub.edu -U "+userName+"_adm"+" -d "+userName+" -W -f "+sqlFile );
                     //crear fitxer al /home/ amb contingut: postgres.mat.ub.edu:5432:"+userName+":"+userName+"_adm:"+password
-                    String exec = "psql postgesql://"+userName+"_adm:"+userName+"@postgres.mat.ub.edu:5432/"+userName+" -f "+"\""+sqlFile+"\"";
+                    String exec = "psql postgresql://"+userName+"_adm:"+password+"@postgres.mat.ub.edu:5432/"+userName+" -f "+sqlFile;
                     System.out.println(exec);
                     Runtime.getRuntime().exec(exec);
                 // Close the result set, statement and the connection
