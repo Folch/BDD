@@ -7,7 +7,7 @@
 
 
 -- Crida al make de la subcarpeta 'consultes'
-\i functions/consultes/make.sql
+\i ../functions/consultes/make.sql
 
 -- Crida al make de la subcarpeta 'trigger_functions'
-\i functions/trigger_functions/make.sql
+\i ../functions/trigger_functions/make.sql

@@ -4,5 +4,5 @@
  *		Per a la creació de taules i tipus de dades.      *
  ******************************************************************/
 
-\i create/create_enums.sql
-\i create/create_taules.sql
+\i ../create/create_enums.sql
+\i ../create/create_taules.sql
