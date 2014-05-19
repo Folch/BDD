@@ -4,7 +4,8 @@ Git per a la pràctica de base de dades
 
 ##Com s'utilitza
 
-psql -h postgres.mat.ub.edu -U alumne_adm -d alumne -W
+psql -h postgres.mat.ub.edu -U xaviml93_adm -d xaviml93 -W
+psql -h postgres.mat.ub.edu -U afolchga8_adm -d afolchga8 -W
 
 ###Comandes
 
