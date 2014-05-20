@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chesstournament;
+package View;
 
-import java.nio.file.Paths;
-import java.sql.SQLException;
+import Model.DataBase;
+import Controller.Controller;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -61,14 +59,30 @@ public class ChessTournament {
 
         System.out.println("Login");
         /*System.out.println("Entra el teu nom d'usuari: ");
-        String userName = sc.nextLine();
-        System.out.println("Entra el teu password: ");
-        String password = sc.nextLine();*/
+         String userName = sc.nextLine();
+         System.out.println("Entra el teu password: ");
+         String password = sc.nextLine();*/
         String userName = "xaviml93";
         String password = "xavi.93";
-        DataBase db = new DataBase(userName,password);
-        
-        
+        DataBase db = new DataBase(userName, password);
+        Controller controller = new Controller(db);
+        int opcio = -1;
+        while (opcio != 3) {
+            System.out.println("\nOpcions");
+            System.out.println("\n\t1-Entrar com un usuari logat");
+            System.out.println("\t2-Entrar com a usuari anònim");
+            System.out.println("\t3-Sortir");
+            System.out.print("Escull una opció: ");
+            String opText = sc.nextLine();
+            try {
+                opcio = Integer.parseInt(opText);
+                if (opcio != 3) {
+                    controller.manageOption(opcio);
+                }
+            } catch (NumberFormatException n) {
+                System.err.println("Opció incorrecta");
+            }
+        }
         return 0;
     }
 
