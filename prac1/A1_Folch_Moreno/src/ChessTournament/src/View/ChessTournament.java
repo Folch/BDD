@@ -61,10 +61,13 @@ public class ChessTournament {
         /*System.out.println("Entra el teu nom d'usuari: ");
          String userName = sc.nextLine();
          System.out.println("Entra el teu password: ");
-         String password = sc.nextLine();*/
-        String userName = "xaviml93";
+         String password = sc.nextLine();
+        System.out.println("Entra el nom de la base de dades: ");
+         String dataBaseName = sc.nextLine();*/
+        String userName = "xaviml93_adm";
         String password = "xavi.93";
-        DataBase db = new DataBase(userName, password);
+        String dataBaseName = "xaviml93";
+        DataBase db = new DataBase(userName, password,dataBaseName);
         Controller controller = new Controller(db);
         int opcio = -1;
         while (opcio != 3) {

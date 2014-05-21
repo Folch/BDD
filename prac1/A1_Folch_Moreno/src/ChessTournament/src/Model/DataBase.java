@@ -29,18 +29,19 @@ public class DataBase {
 
     private Connection conn;
     private final String pathPostgre;
-    private final String userName, password;
+    private final String userName, password,dataBaseName;
     private final String dirQueries;
 
-    public DataBase(String userName, String password) {
+    public DataBase(String userName, String password,String dataBaseName) {
         String dir = Paths.get("").toAbsolutePath().toString();
 
         String dirParent = new File(dir).getParent();
         this.dirQueries = dirParent + "/functions/consultes/";
         this.userName = userName;
         this.password = password;
+        this.dataBaseName = dataBaseName;
         String sqlFile = dirParent + "/A1_Folch_Moreno.sql";
-        this.pathPostgre = "jdbc:postgresql://postgres.mat.ub.edu/" + userName; // Adreça URL on es troba la BD. 
+        this.pathPostgre = "jdbc:postgresql://postgres.mat.ub.edu/" + dataBaseName; // Adreça URL on es troba la BD. 
         this.conn = this.createDataBase(sqlFile);
     }
 
@@ -88,7 +89,7 @@ public class DataBase {
                 // Execute the query
                 //Runtime.getRuntime().exec( "psql -h postgres.mat.ub.edu -U "+userName+"_adm"+" -d "+userName+" -W -f "+sqlFile );
                 //crear fitxer al /home/ amb contingut: postgres.mat.ub.edu:5432:"+userName+":"+userName+"_adm:"+password
-                String exec = "psql postgresql://" + userName + "_adm:" + password + "@postgres.mat.ub.edu:5432/" + userName + " -f " + sqlFile;
+                String exec = "psql postgresql://" + userName + password + "@postgres.mat.ub.edu:5432/" + dataBaseName + " -f " + sqlFile;
                 System.out.println(exec);
                 Runtime.getRuntime().exec(exec);
                 // Close the result set, statement and the connection
@@ -134,7 +135,7 @@ public class DataBase {
     }
 
     private void connect() throws SQLException {
-        conn = DriverManager.getConnection(pathPostgre, userName + "_adm", password);
+        conn = DriverManager.getConnection(pathPostgre, userName, password);
     }
 
     public void queryPlayers() {
@@ -281,14 +282,15 @@ public class DataBase {
             connect();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT jornada,datainici,datafi,jugador_blanques,jugador_negres,jutge from v_taquillers "
-                    + "where hotel like '" + hotel + "' AND sala like '"+sala+"' AND victoria IS NULL;");//JORNADES DE PARTIDES ACABADES
+                    + "where hotel like '" + hotel + "' AND sala like '" + sala + "' AND victoria IS NULL;");//JORNADES DE PARTIDES ACABADES
             System.out.println("Jornada\tData d'inici\tData fi\tJugador blanques\tJugador negres\tJutge");
             ArrayList<String> jornades = new ArrayList<>();
             while (rs.next()) {
                 // do something
                 String jornada = rs.getString("jornada");
-                if(!jornades.contains(jornada))
+                if (!jornades.contains(jornada)) {
                     System.out.println("\t" + jornada);
+                }
                 jornades.add(jornada);
             }
             jo = new String[jornades.size()];
@@ -310,8 +312,8 @@ public class DataBase {
             connect();
             Statement stmt = conn.createStatement();
             stmt.executeUpdate("UPDATE entrada "
-                    + "set entradesvenudes = entradesvenudes - "+numEntrades
-                    + " where hotel like '" + hotel + "' AND sala like '"+sala+"' AND jornada like '"+jornadaEscollida+"';");
+                    + "set entradesvenudes = entradesvenudes - " + numEntrades
+                    + " where hotel like '" + hotel + "' AND sala like '" + sala + "' AND jornada like '" + jornadaEscollida + "';");
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
@@ -324,7 +326,7 @@ public class DataBase {
             connect();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT distinct entrades_disponibles from v_taquillers "
-                    + "where hotel like '" + hotel + "' AND sala like '"+sala+"' AND jornada like '"+jornadaEscollida+"';");//JORNADES DE PARTIDES ACABADES
+                    + "where hotel like '" + hotel + "' AND sala like '" + sala + "' AND jornada like '" + jornadaEscollida + "';");//JORNADES DE PARTIDES ACABADES
             System.out.println("Entrades disponibles");
             while (rs.next()) {
                 // do something
@@ -340,8 +342,134 @@ public class DataBase {
     }
 
     public Game getGame(int jornada, int idPartida) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Game g = null;
+        try {
+            connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select jblanques,jnegres,victoria,jutge,sala,hotel from partida where jornada = " + jornada
+                    + " AND id = " + idPartida + ";");
+            g = new Game();
+            while (rs.next()) {
+                // do something
+                String a = rs.getString("jblanques");
+                if (a == null) {
+                    g.setJblanques(null);
+                } else {
+                    g.setJblanques(a);
+                }
+
+                a = rs.getString("jnegres");
+                if (a == null) {
+                    g.setJnegres(null);
+                } else {
+                    g.setJnegres(a);
+                }
+
+                a = rs.getString("victoria");
+                if (a == null) {
+                    g.setVictoria(null);
+                } else {
+                    g.setVictoria(a);
+                }
+
+                a = rs.getString("jutge");
+                if (a == null) {
+                    g.setJutge(null);
+                } else {
+                    g.setJutge(a);
+                }
+
+                a = rs.getString("sala");
+                if (a == null) {
+                    g.setSala(null);
+                } else {
+                    g.setSala(a);
+                }
+
+                a = rs.getString("hotel");
+                if (a == null) {
+                    g.setHotel(null);
+                } else {
+                    g.setHotel(a);
+                }
+
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return g;
     }
 
+    //retorna true si s'ha pogut actualitzar
+    public boolean updateGame(int jornada, int idPartida, Game g) {
+        boolean updated = false;
+        try {
+            connect();
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate("update partida"
+                    + "set id = " + g.getId() + ",jornada = " + g.getJornada() + " , jblanques = '"
+                    + g.getJblanques() + "' ,jnegres = '" + g.getJnegres() + "' , victoria = '"
+                    + g.getVictoria() + "' ,jutge = '" + g.getJutge() + "' , sala = '"
+                    + g.getSala() + "', hotel = '" + g.getHotel()
+                    + "' where jornada = " + jornada
+                    + " AND id = " + idPartida + " ;");
+
+            stmt.close();
+            updated = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return updated;
+    }
+
+    public boolean setMoviments(ArrayList<String[]> moviments, int jornada, int partida) {
+        //moviments.get(0) => moviment[tirada,time,color]
+        boolean updated = false;
+        try {
+            connect();
+            Statement stmt = conn.createStatement();
+            for (String[] moviment : moviments) {
+                stmt.executeUpdate("update moviment "+
+                    "set tirada = '"+moviment[0]+"', "
+                        + "time = '"+moviment[1]+"', "
+                        + "color = '"+moviment[2]+"'"
+                    + " where jornada = " + jornada
+                    + " AND id = " + partida + " ;");
+            }
+            
+
+            stmt.close();
+            updated = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return updated;
+        
+    }
+
+    public void queryRefereeGames(String dni) {
+        try {
+            connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id,jblanques,jnegres,victoria,jornada,sala,hotel"
+                    + "from partida"
+                    + "where jutge = '"+dni+"';");
+            System.out.println("id\tJugador blanques\tJugador negres\tVictoria\tJornada\tSala\tHotel");
+            while (rs.next()) {
+                // do something
+                System.out.println(rs.getInt("id")+"\t"+rs.getString("jblanques")+"\t"+rs.getString("jnegres")+
+                        "\t"+rs.getString("victoria")+"\t"+rs.getString("jornada")+"\t"+rs.getString("sala")+
+                        "\t"+rs.getString("hotel"));
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

@@ -16,7 +16,7 @@ public class Game {
     private String jnegres;
     private String victoria;
     private String jutge;
-    private String jornada;
+    private int jornada;
     private String sala;
     private String hotel;
     
@@ -64,11 +64,11 @@ public class Game {
         this.jutge = jutge;
     }
 
-    public String getJornada() {
+    public int getJornada() {
         return jornada;
     }
 
-    public void setJornada(String jornada) {
+    public void setJornada(int jornada) {
         this.jornada = jornada;
     }
 

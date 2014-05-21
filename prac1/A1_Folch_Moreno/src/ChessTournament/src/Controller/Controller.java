@@ -38,7 +38,7 @@ public class Controller {
                         if(personType == null){
                             System.err.println("Aquest dni no està a la base de dades");
                         }else{
-                            classifyPerson(personType);
+                            classifyPerson(personType,dni);
                         }
                     }
                 }
@@ -50,9 +50,9 @@ public class Controller {
                 break;
         }
     }
-    private void classifyPerson(String personType){
+    private void classifyPerson(String personType,String dni){
         if(personType.equals("jutge")){
-            Referee jutge = new Referee(dataBase);
+            Referee jutge = new Referee(dataBase,dni);
             jutge.show();
         }else if(personType.equals("taquiller")){
             Salesman taquiller = new Salesman(dataBase);
