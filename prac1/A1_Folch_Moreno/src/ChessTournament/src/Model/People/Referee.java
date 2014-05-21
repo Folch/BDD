@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class Referee extends Anonymous {
 
-    private String dni;
+    private final String dni;
 
     public Referee(DataBase database, String dni) {
         super(database);
